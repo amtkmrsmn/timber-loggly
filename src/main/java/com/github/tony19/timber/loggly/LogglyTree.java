@@ -67,7 +67,7 @@ public class LogglyTree extends Timber.Tree {
 
     public LogglyTree(String token, String tag) {
         loggly = new LogglyClient(token);
-		loggly.setTags(tag);
+		tag(tag);
         // Setup an async callback
         // TODO: handle failed messages with N retries
         handler = new LogglyClient.Callback() {@Override
@@ -85,7 +85,7 @@ public class LogglyTree extends Timber.Tree {
 
     public LogglyTree(String token, String tag, String appName) {
         loggly = new LogglyClient(token);
-		loggly.setTags(tag);
+		tag(tag);
         this.appName = appName;
         // Setup an async callback
         // TODO: handle failed messages with N retries
@@ -260,5 +260,13 @@ public class LogglyTree extends Timber.Tree {
     @Override
     protected void log(int level, String tag, String message, Throwable t) {
         loggly.log(toJson(Level.values()[level], tag, message, t), handler);
+    }
+    /**
+     * Sets the Loggly tag for all logs going forward.
+     * @param tag desired tag or CSV of multiple tags; use empty string
+     *  	to clear tags
+     */
+    public final void tag(String tag) {
+        loggly.setTags(tag);
     }
 }
