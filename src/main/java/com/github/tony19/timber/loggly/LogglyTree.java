@@ -260,7 +260,6 @@ public class LogglyTree extends Timber.Tree {
      */
     @Override
     protected void log(int level, String tag, String message, Throwable t) {
-        // TODO Auto-generated method stub
         loggly.log(toJson(Level.values()[level], tag, message, t), handler);
     }
 }
