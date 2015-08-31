@@ -252,11 +252,10 @@ public class LogglyTree extends Timber.Tree {
     }
 
     /**
-     * Sets the Loggly tag for all logs going forward. This differs from
-     * the API of {@code Timber.TaggedTree} in that it's not a one-shot
-     * tag.
-     * @param tag desired tag or CSV of multiple tags; use empty string
-     *            to clear tags
+     * Sets the Loggly log for all logs going forward. 
+     * @param level log severity level
+     * @param message message to be logged
+     * @param t throwable
      */
     @Override
     protected void log(int level, String tag, String message, Throwable t) {
